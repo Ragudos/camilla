@@ -1,0 +1,147 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(98.89% 0.004 286.33);
+  --foreground: oklch(11.83% 0.046 280.65);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --primary: oklch(42.85% 0.132 286.33);
+  --primary-foreground: oklch(98.9% 0.01 2.86327);
+  --secondary: oklch(33.14% 0.136 29.23);
+  --secondary-foreground: oklch(98.9% 0.01 2.86327);
+  --accent: oklch(70.6% 0.138 87.91);
+  --accent-foreground: oklch(11.8% 0.115 2.80655);
+
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: oklch(7.3% 0.018 280.91);
+  --foreground: oklch(94.04% 0.026 288.32);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --primary: oklch(92.17% 0.134 151.6);
+  --primary-foreground: oklch(7.3% 0.045 2.80915);
+  --secondary: oklch(77.93% 0.129 20.43);
+  --secondary-foreground: oklch(7.3% 0.045 2.80915);
+  --accent: oklch(80.18% 0.145 89.62);
+  --accent-foreground: oklch(7.3% 0.045 2.80915);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --breakpoint-*: initial;
+  --breakpoint-phone: 20rem;
+  --breakpoint-tablet: 40rem;
+  --breakpoint-laptop: 48rem;
+  --breakpoint-desktop: 80rem;
+
+  --container-*: initial;
+  --breakpoint-phone: 20rem;
+  --breakpoint-tablet: 40rem;
+  --breakpoint-laptop: 48rem;
+  --breakpoint-desktop: 80rem;
+}
+
+@utility container {
+  @apply mx-auto px-4;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  ::-webkit-scrollbar-track {
+    border: none;
+    background-color: #ffffff;
+  }
+  ::-webkit-scrollbar {
+    width: 0.25rem;
+    background-color: #ffffff;
+  }
+  .dark {
+    ::-webkit-scrollbar-track {
+      border: none;
+      background-color: rgb(12 10 9);
+    }
+    ::-webkit-scrollbar {
+      width: 0.25rem;
+      background-color: rgb(12 10 9);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #ffffff;
+    }
+  }
+  ::-moz-selection {
+    color: white;
+    background: black;
+  }
+  ::selection {
+    color: white;
+    background: black;
+  }
+  .dark ::-moz-selection {
+    color: black;
+    background: white;
+  }
+  .dark ::selection {
+    color: black;
+    background: white;
+  }
+  body {
+    @apply bg-background text-foreground flex flex-col min-h-dvh leading-normal;
+  }
+
+  header {
+    @apply mb-auto;
+  }
+  footer {
+    @apply mt-auto;
+  }
+}

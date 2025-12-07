@@ -1,0 +1,46 @@
+---
+import Pagination from "@/components/blog/pagination.astro";
+import Posts from "@/components/blog/posts.astro";
+import Layout from "@/layouts/Layout.astro";
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getCollection("blog", ({ data }) => {
+    return !data.draft;
+  });
+
+  return paginate(posts, {
+    pageSize: 10,
+  });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<Layout title="Blog">
+  <section class="container text-center">
+    <h1 class="text-9xl mb-8 font-bold">Blog</h1>
+    <p class="text-2xl font-semibold tablet:text-3xl">
+      Discover my reviews, discussions, insights, and random topic.
+    </p>
+  </section>
+  <section class="container text-center">
+    {
+      page.data.length === 0 ? (
+        <p class="text-muted dark:text-slate-500 text-xl">
+          There are no blogs for now. &colon;&lpar;
+        </p>
+      ) : (
+        <Fragment>
+          <Posts posts={page.data} />
+          <Pagination
+            class="mt-20"
+            prevUrl={page.url.prev}
+            nextUrl={page.url.next}
+          />
+        </Fragment>
+      )
+    }
+  </section>
+</Layout>

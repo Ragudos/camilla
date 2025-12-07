@@ -1,0 +1,28 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getArticleReadingTime } from "@/utils/blog";
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import { record } from "astro:schema";
+
+export const getStaticPaths = (async () => {
+  const blogEntries = await getCollection("blog");
+
+  return blogEntries.map((post) => {
+    console.log(post.id);
+
+    return {
+      params: { slug: post.id },
+      props: { post },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { data, rendered } = post;
+const readTime = getArticleReadingTime(post.body || "");
+---
+
+<Layout title={post.data.title}>
+  <section class="container prose prose-lg dark:prose-invert"></section>
+</Layout>

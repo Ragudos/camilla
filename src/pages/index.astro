@@ -3,5 +3,8 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <h1>Hi</h1>
+  <Fragment slot="meta">
+    <!-- For now, just show the blogs -->
+    <meta http-equiv="refresh" content="0; url=/blog" />
+  </Fragment>
 </Layout>
