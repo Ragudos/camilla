@@ -1,5 +1,9 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import "flowbite/src/themes/default";
 @plugin "@tailwindcss/typography";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -80,12 +84,14 @@
   --breakpoint-tablet: 40rem;
   --breakpoint-laptop: 48rem;
   --breakpoint-desktop: 80rem;
+  --breakpoint-big-desktop: 92.5rem;
 
   --container-*: initial;
   --breakpoint-phone: 20rem;
   --breakpoint-tablet: 40rem;
   --breakpoint-laptop: 48rem;
   --breakpoint-desktop: 80rem;
+  --breakpoint-big-desktop: 92.5rem;
 }
 
 @utility container {
@@ -141,6 +147,11 @@
   header {
     @apply mb-auto;
   }
+
+  main {
+    @apply my-4;
+  }
+
   footer {
     @apply mt-auto;
   }

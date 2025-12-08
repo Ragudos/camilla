@@ -32,7 +32,7 @@ const createSROnlyLabel = (text: string) => {
  * This set-up was informed by https://amberwilson.co.uk/blog/are-your-anchor-links-accessible/
  */
 export const autolinkConfig: Options = {
-  properties: { class: "anchor-link" },
+  properties: { class: "anchor-link inline-block" },
   behavior: "after",
   group: ({ tagName }) =>
     h("div", {

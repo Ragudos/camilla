@@ -1,16 +1,17 @@
 ---
+import Sidebar, {
+  type Props as SidebarProps,
+} from "@/components/blog/sidebar.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getArticleReadingTime } from "@/utils/blog";
 import type { GetStaticPaths } from "astro";
+import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
-import { record } from "astro:schema";
 
 export const getStaticPaths = (async () => {
   const blogEntries = await getCollection("blog");
 
   return blogEntries.map((post) => {
-    console.log(post.id);
-
     return {
       params: { slug: post.id },
       props: { post },
@@ -24,5 +25,89 @@ const readTime = getArticleReadingTime(post.body || "");
 ---
 
 <Layout title={post.data.title}>
-  <section class="container prose prose-lg dark:prose-invert"></section>
+  <section class="container">
+    <nav></nav>
+  </section>
+  <article class="break-all relative container">
+    <header class="mb-16 flex flex-col items-center justify-center text-center">
+      <div>
+        <span class="sr-only">Tags</span>
+        <ul class="flex">
+          {
+            data.tags.map((tag) => {
+              return (
+                <li class="bg-brand-softer border border-brand-subtle text-fg-brand-strong text-xs font-medium px-1.5 py-0.5 rounded-full">
+                  {tag}
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
+      <h1 class="text-9xl mb-8 font-bold">{data.title}</h1>
+      <div
+        class="mb-12 flex flex-wrap items-center justify-center gap-2 text-muted dark:text-gray-500"
+      >
+        <time datetime={data.publishDate.toISOString()}>
+          {
+            data.publishDate.toLocaleDateString("en-US", {
+              month: "long",
+              day: "2-digit",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+          }
+        </time>
+        <svg
+          viewBox="0 0 2 2"
+          class="-ml-0.5 h-0.5 w-0.5 flex-none fill-white/50"
+        >
+          <circle cx="1" cy="1" r="1"></circle>
+        </svg>
+        <div class="flex items-center gap-x-1">
+          <Icon name="carbon:user-avatar-filled-alt" width="20" />
+          {post.data.author}
+        </div>
+        <svg
+          viewBox="0 0 2 2"
+          class="-ml-0.5 h-0.5 w-0.5 flex-none fill-white/50"
+        >
+          <circle cx="1" cy="1" r="1"></circle>
+        </svg>
+        <span>{data.category}</span>
+      </div>
+      <div class="w-full rounded-4xl overflow-hidden">
+        <img
+          class="object-cover w-full"
+          src={data.image.src}
+          alt={data.image.alt}
+        />
+      </div>
+    </header>
+
+    <div
+      class="flex flex-col-reverse desktop:flex-row desktop:justify-center gap-x-12 gap-y-4"
+    >
+      <aside
+        class="max-w-[25ch] desktop:sticky desktop:top-12 desktop:h-[calc(100dvh-5rem)] desktop:overflow-y-auto"
+      >
+        <Sidebar
+          headings={rendered?.metadata?.headings as SidebarProps["headings"]}
+        />
+      </aside>
+
+      <section class="prose prose-lg desktop:prose-xl dark:prose-invert">
+        <p class="text-justify">
+          {data.description}
+        </p>
+
+        <section>
+          <Fragment set:html={rendered?.html.trim()} />
+        </section>
+      </section>
+    </div>
+
+    <footer></footer>
+  </article>
 </Layout>

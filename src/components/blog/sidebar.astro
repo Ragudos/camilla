@@ -1,0 +1,67 @@
+---
+export interface Props {
+  headings: {
+    depth: number;
+    slug: string;
+    text: string;
+  }[];
+}
+
+type HeadingGrouped = {
+  depth: number;
+  slug: string;
+  text: string;
+  subHeadings: HeadingGrouped[];
+};
+
+const { headings } = Astro.props;
+const groupedHeadings = headings.reduce(
+  (acc: HeadingGrouped[], item: Props["headings"][number]) => {
+    const data: HeadingGrouped = {
+      depth: item.depth,
+      slug: item.slug,
+      text: item.text,
+      subHeadings: [] as HeadingGrouped[],
+    };
+
+    if (acc.length === 0) {
+      acc.push(data);
+    } else {
+      const lastItem = acc[acc.length - 1]!;
+
+      if (lastItem.depth < item.depth) {
+        lastItem.subHeadings.push(data);
+      } else {
+        acc.push(data);
+      }
+    }
+
+    return acc;
+  },
+  [] as HeadingGrouped[]
+);
+---
+
+<div class="text-md font-semibold">Table of Contents</div>
+<nav>
+  {
+    () => {
+      function r(h: HeadingGrouped[]) {
+        return (
+          <ul class="hidden desktop:block list-disc py-2 px-4" role="list">
+            {h.map((heading) => (
+              <li class="m-2">
+                <a class="no-underline" href={`#${heading.slug}`}>
+                  {heading.text}
+                </a>
+                {heading.subHeadings.length !== 0 && r(heading.subHeadings)}
+              </li>
+            ))}
+          </ul>
+        );
+      }
+
+      return r(groupedHeadings);
+    }
+  }
+</nav>

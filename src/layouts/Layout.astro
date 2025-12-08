@@ -1,6 +1,7 @@
 ---
 import { SEO } from "astro-seo";
 import { ClientRouter } from "astro:transitions";
+// @ts-ignore
 import { pwaInfo } from "virtual:pwa-info";
 import "@/index.css";
 import Navbar from "@/components/navbar.astro";
@@ -73,7 +74,7 @@ const makeTitle = title ? `${title} | Camilla` : "Camilla - My personal blog";
   </head>
   <body>
     <Navbar />
-    <main class="flex flex-col gap-16 justify-center items-center">
+    <main>
       <slot />
     </main>
     <Footer />
@@ -85,5 +86,8 @@ const makeTitle = title ? `${title} | Camilla` : "Camilla - My personal blog";
         content-visibility: auto;
       }
     </style>
+    <script>
+      import "flowbite";
+    </script>
   </body>
 </html>
