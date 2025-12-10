@@ -1,5 +1,5 @@
 /**
- * @description Get reading time
+ * @description Get reading time in minutes
  * @param body
  * @returns
  */

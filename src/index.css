@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import "tailwindcss";
 @import "flowbite/src/themes/default";
 @plugin "@tailwindcss/typography";
 @plugin "flowbite/plugin";
@@ -95,7 +95,7 @@
 }
 
 @utility container {
-  @apply mx-auto px-4;
+  @apply mx-auto px-4 max-w-370;
 }
 
 @layer base {

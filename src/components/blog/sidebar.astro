@@ -48,7 +48,7 @@ const groupedHeadings = headings.reduce(
     () => {
       function r(h: HeadingGrouped[]) {
         return (
-          <ul class="hidden desktop:block list-disc py-2 px-4" role="list">
+          <ul class="list-disc py-2 px-4" role="list">
             {h.map((heading) => (
               <li class="m-2">
                 <a class="no-underline" href={`#${heading.slug}`}>

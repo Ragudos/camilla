@@ -6,6 +6,8 @@ import Layout from "@/layouts/Layout.astro";
 import { getArticleReadingTime } from "@/utils/blog";
 import type { GetStaticPaths } from "astro";
 import { Icon } from "astro-icon/components";
+import { Picture } from "astro:assets";
+import { getImage } from "astro:assets";
 import { getCollection } from "astro:content";
 
 export const getStaticPaths = (async () => {
@@ -28,8 +30,10 @@ const readTime = getArticleReadingTime(post.body || "");
   <section class="container">
     <nav></nav>
   </section>
-  <article class="break-all relative container">
-    <header class="mb-16 flex flex-col items-center justify-center text-center">
+  <article class="relative container">
+    <header
+      class="mb-14 tablet:mb-16 flex flex-col items-center justify-center text-center"
+    >
       <div>
         <span class="sr-only">Tags</span>
         <ul class="flex">
@@ -44,10 +48,21 @@ const readTime = getArticleReadingTime(post.body || "");
           }
         </ul>
       </div>
-      <h1 class="text-9xl mb-8 font-bold">{data.title}</h1>
-      <div
-        class="mb-12 flex flex-wrap items-center justify-center gap-2 text-muted dark:text-gray-500"
+      <h1
+        class="break-all hyphens-auto text-7xl mb-6 tablet:text-9xl tablet:mb-8 font-bold"
       >
+        {data.title}
+      </h1>
+      <section
+        class="mb-10 tablet:mb-12 flex flex-wrap items-center justify-center gap-2 text-muted dark:text-gray-500"
+      >
+        <span>{readTime} minute/s read</span>
+        <svg
+          viewBox="0 0 2 2"
+          class="-ml-0.5 h-0.5 w-0.5 flex-none fill-white/50"
+        >
+          <circle cx="1" cy="1" r="1"></circle>
+        </svg>
         <time datetime={data.publishDate.toISOString()}>
           {
             data.publishDate.toLocaleDateString("en-US", {
@@ -76,29 +91,30 @@ const readTime = getArticleReadingTime(post.body || "");
           <circle cx="1" cy="1" r="1"></circle>
         </svg>
         <span>{data.category}</span>
-      </div>
-      <div class="w-full rounded-4xl overflow-hidden">
-        <img
-          class="object-cover w-full"
-          src={data.image.src}
-          alt={data.image.alt}
-        />
-      </div>
+      </section>
+      <Picture
+        src={data.image.src}
+        alt={data.image.alt}
+        widths={[480, 720, 1280]}
+        formats={["avif", "jpg", "webp"]}
+      />
     </header>
 
     <div
-      class="flex flex-col-reverse desktop:flex-row desktop:justify-center gap-x-12 gap-y-4"
+      class="flex flex-col-reverse items-center desktop:items-start desktop:flex-row desktop:justify-center gap-x-12 gap-y-4"
     >
       <aside
-        class="max-w-[25ch] desktop:sticky desktop:top-12 desktop:h-[calc(100dvh-5rem)] desktop:overflow-y-auto"
+        class="break-all hidden desktop:inline-block desktop:max-w-[30ch] desktop:sticky desktop:top-12 desktop:h-[calc(100dvh-5rem)] desktop:overflow-y-auto"
       >
         <Sidebar
           headings={rendered?.metadata?.headings as SidebarProps["headings"]}
         />
       </aside>
 
-      <section class="prose prose-lg desktop:prose-xl dark:prose-invert">
-        <p class="text-justify">
+      <section
+        class="prose prose-lg prose-headings:hyphens-auto prose-headings:break-all desktop:prose-xl dark:prose-invert"
+      >
+        <p>
           {data.description}
         </p>
 
@@ -107,7 +123,6 @@ const readTime = getArticleReadingTime(post.body || "");
         </section>
       </section>
     </div>
-
     <footer></footer>
   </article>
 </Layout>

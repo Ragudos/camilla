@@ -1,55 +1,61 @@
-local_backend: true
-
 logo_url: /favicon-32x32.png
 
 backend:
   name: "github"
   repo: ragudos/camilla
   branch: main
-  base_url: https://api.netlify.com 
+  base_url: https://api.netlify.com
   automatic_reployments: true
 
-media_folder: "public/images"
-public_folder: "/images"
+media_folder: "src/assets/images"
+public_folder: "../assets/images"
 
 collections:
-    - name: "posts"
-      label: "Blog Posts"
-      folder: "src/blog"
-      create: true
-      delete: true
-      fields:
-          - name: "title"
-            widget: "string"
-            label: "Post Title"
-          - label: "Draft"
-            name: "draft"
-            widget: "boolean"
-          - label: "Author"
-            name: "author"
-            widget: "string"
-          - label: "Tags"
-            name: "tags"
-            widget: "list"
-          - label: "Image"
-            name: "image"
-            widget: "object"
-            fields:
-                - { label: Source, name: src, widget: image }
-                - { label: Alt Text, name: alt, widget: string }
-          - label: "Description"
-            name: "description"
-            widget: "text"
-          - label: "Publish Date"
-            name: "publishDate"
-            widget: "datetime"
-            format: "YYYY-MM-DD HH:mm"
-          - label: "Category"
-            name: "category"
-            widget: "select"
-            options: ["Culinary", "Literature", "Gaming", "Arts & Crafts", "Technology", "Philosophy", "Other"]
-          - name: "body"
-            widget: "markdown"
-            modes: [rich_text, raw]
-            label: "Post Content"
-
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "src/blog"
+    create: true
+    delete: true
+    fields:
+      - name: "title"
+        widget: "string"
+        label: "Post Title"
+      - label: "Draft"
+        name: "draft"
+        widget: "boolean"
+      - label: "Author"
+        name: "author"
+        widget: "string"
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+      - label: "Image"
+        name: "image"
+        widget: "object"
+        fields:
+          - { label: Source, name: src, widget: image }
+          - { label: Alt Text, name: alt, widget: string }
+      - label: "Description"
+        name: "description"
+        widget: "text"
+      - label: "Publish Date"
+        name: "publishDate"
+        widget: "datetime"
+        format: "YYYY-MM-DD HH:mm"
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          [
+            "Culinary",
+            "Literature",
+            "Gaming",
+            "Arts & Crafts",
+            "Technology",
+            "Philosophy",
+            "Other",
+          ]
+      - name: "body"
+        widget: "markdown"
+        modes: [rich_text, raw]
+        label: "Post Content"
