@@ -3,6 +3,7 @@ logo_url: /favicon-32x32.png
 backend:
   name: github
   repo: ragudos/camilla
+  base_url: https://sveltia-cms-auth.workemailaaronragudos.workers.dev/
   branch: main
 
 media_folder: "src/assets/images"
