@@ -2,16 +2,15 @@
 title: rerrwe
 draft: false
 author: rwerew
-tags:
-  - rewrew
 image:
   src: ../assets/images/2025-12-01-042357_hyprshot.png
   alt: Hero image
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra, nulla vel vestibulum accumsan, magna magna facilisis purus, eget fermentum ipsum sapien sed lorem. Donec placerat facilisis pretium. Curabitur at nisi arcu. Vivamus ut libero et neque euismod mattis. Duis rutrum tempus augue, in efficitur mauris congue et. Nunc ac erat ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed vel faucibus lorem, eget ultricies lectus. Mauris venenatis luctus facilisis. Praesent erat lorem, ullamcorper ut rutrum eget, interdum id risus. Nunc pretium metus purus, quis blandit mauris sollicitudin quis. Vivamus fringilla scelerisque ligula quis consequat.
 publishDate: 2025-12-07T08:38:00.000Z
 category: Culinary
+tags:
+  - rewrewdsadasd
 ---
-
 # rhi
 
 Welcome to this short write-up! In this article, I’m going to share a simple thought about culinary creativity and how small ideas can turn into something exciting in the kitchen. Cooking doesn’t always need to be complicated—sometimes it’s just about exploring flavors and having fun.
