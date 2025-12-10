@@ -1,11 +1,9 @@
 logo_url: /favicon-32x32.png
 
 backend:
-  name: "github"
+  name: github
   repo: ragudos/camilla
   branch: main
-  base_url: https://api.netlify.com
-  automatic_reployments: true
 
 media_folder: "src/assets/images"
 public_folder: "../assets/images"
